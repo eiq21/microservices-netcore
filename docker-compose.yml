@@ -49,6 +49,22 @@ services:
       dockerfile: app/Domain/Microservices.Demo.Policy.API/Dockerfile
     networks:
       - backend
+########################################################## microservices.demo.policy.api #################################################################################
+  microservices.demo.report.api:
+    image: ${DOCKER_REGISTRY-}microservicesdemoreportapi
+    container_name: Microservices.Demo.Report.Api
+    mem_limit: 256m
+    mem_reservation: 128M
+    cpus: 0.25
+    environment:      
+      - ASPNETCORE_URLS=http://::80
+    ports:
+      - 80      
+    build:
+      context: .
+      dockerfile: app/Domain/Microservices.Demo.Report.API/Dockerfile
+    networks:
+      - backend
 ########################################################## microservices.demo.auth.api ###################################################################################
   microservices.demo.auth.api:
     image: ${DOCKER_REGISTRY-}microservicesdemoauthapi

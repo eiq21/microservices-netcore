@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microservices.Demo.Policy.API.CQRS.Commands.Policy.CreatePolicy;
 using Microservices.Demo.Policy.API.CQRS.Commands.Policy.TerminatePolicy;
+using Microservices.Demo.Policy.API.CQRS.Queries.Infrastructure.Dtos.Policy;
+using Microservices.Demo.Policy.API.CQRS.Queries.Policy.FindAllPolicies;
 using Microservices.Demo.Policy.API.CQRS.Queries.Policy.GetPolicyDetails;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,11 @@ namespace Microservices.Demo.Policy.API.Application
         {
             var policyResult = await _mediator.Send(command);
             return policyResult;
+        }
+        public async Task<IEnumerable<PolicyDto>> GetAllPoliciesAsync()
+        {
+            var policies = await _mediator.Send(new FindAllPoliciesQuery());
+            return policies;
         }
         public async Task<GetPolicyDetailsQueryResult> GetPolicyDetails(string policyNumber)
         {

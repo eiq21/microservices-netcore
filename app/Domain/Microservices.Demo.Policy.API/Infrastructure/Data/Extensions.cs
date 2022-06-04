@@ -21,7 +21,7 @@ namespace Microservices.Demo.Policy.API.Infrastructure.Data
                 options.UseSqlServer(policyConnection);
             });
             services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
-
+            services.AddScoped<IPolicyRepository, PolicyRepository>();
             return services;
         }
     }

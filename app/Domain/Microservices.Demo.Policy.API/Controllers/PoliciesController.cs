@@ -27,6 +27,12 @@ namespace Microservices.Demo.Policy.API.Controllers
             return new JsonResult(await _policyApplicationService.CreatePolicyAsync(command));
         }
 
+        [HttpGet(Name = "GetPolicies")]
+        public async Task<ActionResult> GetAll()
+        {
+            return new JsonResult(await _policyApplicationService.GetAllPoliciesAsync());
+        }
+
         // GET 
         [HttpGet("{policyNumber}")]
         public async Task<ActionResult> Get(string policyNumber)

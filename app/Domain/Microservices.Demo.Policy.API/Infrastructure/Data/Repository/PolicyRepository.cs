@@ -20,6 +20,11 @@
             _policyDbContext.Policies.Add(policy);
         }
 
+        public async Task<List<Policy>> FindAll()
+        {
+            return await _policyDbContext.Policies.Include(ps=> ps.PolicyStatus).ToListAsync();
+        }
+
         public async Task<Policy> WithNumber(string number)
         {
             return await _policyDbContext.Policies.Where(p => p.Number == number).FirstOrDefaultAsync();
